@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <h3 class="mb-4">Transfer History</h3>
+    <div class="card">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Receiver's wallet ID</th>
+                    <th>Reason for the transfer</th>
+                    <th>Amount deposited</th>
+                    <th>Withdrawal Amount</th>
+                </tr>
+            </thead>
+            <tbody id="results" class="table-group-divider">
+                {% autoescape false %}
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.account }}</td>
+                    <td>{{ transaction.reason }}</td>
+                    <td>${{ transaction.amount_deposit }}.00</td>
+                    <td>${{ transaction.amount_withdraw }}.00</td>
+                </tr>
+                {% endfor %}
+                <td></td>
+                <td>Total: </td>
+                <td>${{ total_deposit }}.00</td>
+                <td>${{ total_withdraw }}.00</td>
+                {% endautoescape %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
